@@ -13,3 +13,11 @@
 
     background-color: darkcyan;
 }
+
+#movieId {
+    width: 5em;
+}
+
+#movieName {
+    width: 15em;
+}

@@ -23,12 +23,11 @@ function NavHead(props) {
                             <input type="number"
                                 id="movieAmount"
                                 className="w-25"
-                                min={1}
-                                max={12}
+                                min={2}
+                                max={10}
                                 value={props.movieDispCount}
                                 onChange={(ev) => {
-                                    let currVal = ev.target.value;
-                                    props.handleCounter(currVal)
+                                    props.handleCounter(ev.target.value)
                                 }} />
                         </div>
                     </Nav>

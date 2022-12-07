@@ -1,0 +1,15 @@
+.movieCard {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 80%;
+    margin-inline: auto;
+
+    padding: 0.5em;
+    margin-top: 6px;
+
+    border-radius: 12px;
+
+    background-color: darkcyan;
+}

@@ -8,9 +8,4 @@ export const MOVIES=[
     {id:cryptoRandomString({length: 5}), name:"The Godfather", genre:"Drama", rating:10, favorite:false},
     {id:cryptoRandomString({length: 5}), name:"The Godfather", genre:"Drama", rating:10, favorite:false},
     {id:cryptoRandomString({length: 5}), name:"The Godfather", genre:"Drama", rating:10, favorite:false},
-    {id:cryptoRandomString({length: 5}), name:"The Godfather", genre:"Drama", rating:10, favorite:false},
-    {id:cryptoRandomString({length: 5}), name:"The Godfather", genre:"Drama", rating:10, favorite:false},
-    {id:cryptoRandomString({length: 5}), name:"The Godfather", genre:"Drama", rating:10, favorite:false},
-    {id:cryptoRandomString({length: 5}), name:"The Godfather", genre:"Drama", rating:10, favorite:false},
-    {id:cryptoRandomString({length: 5}), name:"The Godfather", genre:"Drama", rating:10, favorite:false},
 ]

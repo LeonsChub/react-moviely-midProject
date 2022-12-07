@@ -6,7 +6,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button'
 
-function NavHead() {
+function NavHead(props) {
+
     return (
         <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
             <Container>
@@ -19,7 +20,16 @@ function NavHead() {
                     <Nav>
                         <div className='d-flex justify-content-end align-items-center'>
                             <label htmlFor="movieAmount" className="me-2">Movie Count:</label>
-                            <input type="number" id="movieAmount" className="w-25" min={1} max={12} />
+                            <input type="number"
+                                id="movieAmount"
+                                className="w-25"
+                                min={1}
+                                max={12}
+                                value={props.movieDispCount}
+                                onChange={(ev) => {
+                                    let currVal = ev.target.value;
+                                    props.handleCounter(currVal)
+                                }} />
                         </div>
                     </Nav>
                 </Navbar.Collapse>

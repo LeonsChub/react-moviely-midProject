@@ -1,0 +1,15 @@
+.moviesHeading {
+    text-align: center;
+    text-decoration: underline;
+}
+
+#moviesWrap {
+    overflow-y: auto;
+    height: 72vh;
+}
+
+.pagination {
+    margin: 0 !important;
+    margin-top: 24px !important;
+    justify-content: center;
+}

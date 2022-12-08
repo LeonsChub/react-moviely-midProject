@@ -3,19 +3,29 @@ import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button'
+
+import { Link } from 'react-router-dom';
+
+import './navbar.css'
 
 function NavHead(props) {
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
-            <Container>
-                <Navbar.Brand>Moviely</Navbar.Brand>
+            <Container className='mx-auto'>
+                <Navbar.Brand id='navBrand'>
+                    <Link to="/">
+                        Moviely
+                    </Link>
+                </Navbar.Brand>
+
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <Button variant='outline-dark'>Add Movie</Button>
+                        <Link to='/addMovie'>
+                            <Button variant='outline-dark'>Add Movie</Button>
+                        </Link>
                     </Nav>
                     <Nav>
                         <div className='d-flex justify-content-end align-items-center'>

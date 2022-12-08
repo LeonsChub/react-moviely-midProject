@@ -4,11 +4,12 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import './movieCard.css'
 
+
 function MovieCard({ movie }) {
     function renderPopOver() {
         const renderTooltip = () => (
             <Tooltip id="button-tooltip">
-                {movie.genres.map((g) => <p className='m-0'>{g}</p>)}
+                {movie.genres.map((g, index) => <p key={index} className='m-0'>{g.replace(',', '')}</p>)}
             </Tooltip>
         );
 
@@ -24,7 +25,7 @@ function MovieCard({ movie }) {
     }
 
     return (
-        <div className='movieCard'>
+        <div className='movieCard' >
             <p className='m-0' id="movieId">{movie.id}</p>
             <p className='m-0' id="movieName">{movie.title}</p>
             <p className='m-0' id="movieGenre">{movie.genres.length > 1 ? renderPopOver() : movie.genres[0]}</p>

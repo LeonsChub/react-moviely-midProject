@@ -10,7 +10,7 @@ import MovieCard from '../MovieCard/MovieCard'
 
 import './filterPage.css'
 
-function FilterPage({ movieNum, movieList, rmFunc }) {
+function FilterPage({ movieNum, movieList, rmFunc, toggleFunc }) {
     const [pagActive, setPagActive] = useState(1);
 
 
@@ -22,6 +22,7 @@ function FilterPage({ movieNum, movieList, rmFunc }) {
                 <MovieCard
                     movie={movieList[i]}
                     rmFunc={rmFunc}
+                    toggleFunc={toggleFunc}
                     key={movieList[i].id}
                 />);
         }

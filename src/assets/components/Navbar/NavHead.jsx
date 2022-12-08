@@ -37,7 +37,8 @@ function NavHead(props) {
                                 max={10}
                                 value={props.movieDispCount}
                                 onChange={(ev) => {
-                                    props.handleCounter(ev.target.value)
+                                    let newVal = ev.target.value;
+                                    props.handleCounter(newVal > 10 ? 10 : newVal < 2 ? 2 : newVal)
                                 }} />
                         </div>
                     </Nav>

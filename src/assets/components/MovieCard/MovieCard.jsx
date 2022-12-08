@@ -1,11 +1,10 @@
-import React from 'react';
 import Button from 'react-bootstrap/Button';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import './movieCard.css'
 
 
-function MovieCard({ movie }) {
+function MovieCard({ movie, rmFunc }) {
     function renderPopOver() {
         const renderTooltip = () => (
             <Tooltip id="button-tooltip">
@@ -31,7 +30,9 @@ function MovieCard({ movie }) {
             <p className='m-0' id="movieGenre">{movie.genres.length > 1 ? renderPopOver() : movie.genres[0]}</p>
             <p className='m-0' id="rating">{movie.rating}/10</p>
             <p className='m-0' id="movieFav">{!movie.favorite ? 'false' : "true"}</p>
-            <Button variant='danger'>X</Button>
+            <Button variant='danger' onClick={
+                () => rmFunc(movie.id)
+            }>X</Button>
         </div>
     )
 }

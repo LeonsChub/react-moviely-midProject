@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -10,14 +10,20 @@ import MovieCard from '../MovieCard/MovieCard'
 
 import './filterPage.css'
 
-function FilterPage({ movieNum, movieList }) {
+function FilterPage({ movieNum, movieList, rmFunc }) {
     const [pagActive, setPagActive] = useState(1);
+
 
     function renderByCount() {
         const moviesDom = []
         for (let i = (pagActive - 1) * movieNum; i < movieNum * pagActive; i++) {
             if (i >= movieList.length) { break; }
-            moviesDom.push(<MovieCard movie={movieList[i]} key={movieList[i].id} />);
+            moviesDom.push(
+                <MovieCard
+                    movie={movieList[i]}
+                    rmFunc={rmFunc}
+                    key={movieList[i].id}
+                />);
         }
         return moviesDom;
     }

@@ -1,50 +1,50 @@
 import React from 'react';
-// import { Nav } from 'react-bootstrap';
-
-import { BsCart4 } from 'react-icons//bs';
-import { MdClear } from 'react-icons//md';
-
 import SidebarMenu from 'react-bootstrap-sidebar-menu';
+import { render } from 'react-dom';
+import { generatePath } from 'react-router-dom';
 
 import './sidebar.css';
 
-function Sidebar() {
-  let totalItems;
+function Sidebar({ movies }) {
+
+  function getAllGenres() {
+    let uniqueGenres = [];
+    movies.forEach(movie => {
+      movie.genres.map((g) => !uniqueGenres.includes(g) ? uniqueGenres.push(g) : null);
+    });
+    // uniqueGenres = uniqueGenres.map((g) => g.replace(',', ''))
+    // uniqueGenres = [... new Set(uniqueGenres)]
+    return uniqueGenres;
+  }
+
+  function getMoviesByGenre(genre) {
+    let moviesByGenres = movies.filter((movie) => movie.genres.includes(genre));
+    console.log(moviesByGenres)
+  }
+
+  function renderAllMenuItems() {
+    let sidebarItems;
+    sidebarItems = genres.map((g) => {
+      return (
+        <SidebarMenu.Nav
+          key={g}
+          className="sidebarLink"
+          onClick={() => getMoviesByGenre(g)}>
+          <SidebarMenu.Nav.Title>
+            <h6>{g}</h6>
+          </SidebarMenu.Nav.Title>
+        </SidebarMenu.Nav>)
+    });
+    return sidebarItems;
+  }
+
+  let genres = getAllGenres();
 
   return (
     <SidebarMenu bg='dark' className='p-0 m-0' id="sidebar">
       <div>
         <SidebarMenu.Body>
-
-          <SidebarMenu.Nav className="sidebarLink">
-            <SidebarMenu.Nav.Title>
-              <h6>Action</h6>
-            </SidebarMenu.Nav.Title>
-          </SidebarMenu.Nav>
-
-          <SidebarMenu.Nav className="sidebarLink">
-            <SidebarMenu.Nav.Title>
-              <h6>Comedy</h6>
-            </SidebarMenu.Nav.Title>
-          </SidebarMenu.Nav>
-
-          <SidebarMenu.Nav className="sidebarLink">
-            <SidebarMenu.Nav.Title>
-              <h6>Drama</h6>
-            </SidebarMenu.Nav.Title>
-          </SidebarMenu.Nav>
-
-          <SidebarMenu.Nav className="sidebarLink">
-            <SidebarMenu.Nav.Title>
-              <h6>Fantasy</h6>
-            </SidebarMenu.Nav.Title>
-          </SidebarMenu.Nav>
-
-          <SidebarMenu.Nav className="sidebarLink">
-            <SidebarMenu.Nav.Title>
-              <h6>Horror</h6>
-            </SidebarMenu.Nav.Title>
-          </SidebarMenu.Nav>
+          {renderAllMenuItems()}
 
           <SidebarMenu.Nav />
         </SidebarMenu.Body>

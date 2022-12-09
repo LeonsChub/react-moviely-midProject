@@ -29,10 +29,13 @@ function FilterPage({ movieNum, movieList, rmFunc, toggleFunc }) {
         return moviesDom;
     }
 
+
     return (
         <Container fluid>
             <Row>
-                <Col md={2} xs={0} className='p-0 m-0'><Sidebar /></Col>
+                <Col md={2} xs={0} className='p-0 m-0'>
+                    <Sidebar movies={movieList} />
+                </Col>
                 <Col md={10} xs={12} className='p-0 m-0'>
                     <h1 className='moviesHeading mt-3'>Movies</h1>
                     <div id="moviesWrap">

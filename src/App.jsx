@@ -15,9 +15,6 @@ function App() {
   const [movieList, setMovieList] = useState(MOVIES);
   const [movieNum, setMovieNum] = useState(4);
 
-  useEffect(() => {
-    console.log('removed')
-  }, [movieList])
 
   function handleMovieRemove(id) {
     let temp = movieList;
@@ -25,6 +22,14 @@ function App() {
     temp.splice(index, 1)
     setMovieList([...temp]);
   }
+
+  function toggleFav(id) {
+    let temp = movieList;
+    const index = movieList.findIndex((mov) => mov.id === id);
+    temp[index].favorite = !temp[index].favorite;
+    setMovieList([...temp]);
+  }
+
 
   return (
     <>
@@ -35,7 +40,8 @@ function App() {
             <FilterPage
               movieNum={movieNum}
               movieList={movieList}
-              rmFunc={handleMovieRemove} />} />
+              rmFunc={handleMovieRemove}
+              toggleFunc={toggleFav} />} />
         </Routes>
       </BrowserRouter>
     </>

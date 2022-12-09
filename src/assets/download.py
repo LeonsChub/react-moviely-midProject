@@ -14,12 +14,16 @@ movieList = soup.findAll('div', attrs = {'class':'lister-item mode-advanced'})
 for movie in movieList:
 	movieToAppend = {}
 	movieInfo = movie.find('div', attrs = {'class':'lister-item-content'})
+	movieToAppend['id'] = ('cryptoRandomString({length:5})')
 	movieToAppend['title'] = (movieInfo.h3.a.text)
-	movieToAppend['genres'] = (movieInfo.find('span',attrs={'class':'genre'}).text).strip().replace('\n','').split()
+	movieToAppend['genres'] = (movieInfo.find('span',attrs={'class':'genre'}).text).strip().replace('\n','').replace(',','').split()
 	movieToAppend['rating'] = (movieInfo.find('div',attrs = {'inline-block ratings-imdb-rating'}).strong.text)
+	movieToAppend['favorite'] = False
 
 	movies.append(movieToAppend)
 
-for movie in movies:
-	with open('movieArray.js','a') as file:
-		file.write(json.dumps(movie)+'\n')
+with open('movieData.js','a') as file:
+	for movie in movies:
+		file.write(json.dumps(movie)+',\n')
+	file.write(']')
+	file.close()

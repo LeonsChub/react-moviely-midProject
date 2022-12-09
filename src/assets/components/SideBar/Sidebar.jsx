@@ -5,21 +5,19 @@ import { generatePath } from 'react-router-dom';
 
 import './sidebar.css';
 
-function Sidebar({ movies }) {
+function Sidebar({ movies, filteredList, setFilteredList }) {
 
   function getAllGenres() {
     let uniqueGenres = [];
     movies.forEach(movie => {
       movie.genres.map((g) => !uniqueGenres.includes(g) ? uniqueGenres.push(g) : null);
     });
-    // uniqueGenres = uniqueGenres.map((g) => g.replace(',', ''))
-    // uniqueGenres = [... new Set(uniqueGenres)]
     return uniqueGenres;
   }
 
   function getMoviesByGenre(genre) {
     let moviesByGenres = movies.filter((movie) => movie.genres.includes(genre));
-    console.log(moviesByGenres)
+    setFilteredList(moviesByGenres)
   }
 
   function renderAllMenuItems() {
@@ -45,7 +43,6 @@ function Sidebar({ movies }) {
       <div>
         <SidebarMenu.Body>
           {renderAllMenuItems()}
-
           <SidebarMenu.Nav />
         </SidebarMenu.Body>
       </div>

@@ -15,7 +15,7 @@ function NavHead(props) {
         <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
             <Container className='mx-auto'>
                 <Navbar.Brand id='navBrand'>
-                    <Link to="/">
+                    <Link to="/" onClick={() => props.setFilteredList([])}>
                         Moviely
                     </Link>
                 </Navbar.Brand>

@@ -14,13 +14,19 @@ import FilterPage from './assets/components/Pages/FilterPage'
 function App() {
   const [movieList, setMovieList] = useState(MOVIES);
   const [movieNum, setMovieNum] = useState(4);
+  const [filteredList, setFilteredList] = useState([]);
 
 
   function handleMovieRemove(id) {
     let temp = movieList;
     const index = movieList.findIndex((mov) => mov.id === id);
-    temp.splice(index, 1)
+    temp.splice(index, 1);
     setMovieList([...temp]);
+
+    const fTemp = filteredList;
+    const indexToRm = fTemp.findIndex((fMovie) => fMovie.id === id);
+    fTemp.splice(indexToRm, 1);
+    setFilteredList([...fTemp])
   }
 
   function toggleFav(id) {
@@ -34,14 +40,21 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <NavHead movieDispCount={movieNum} handleCounter={setMovieNum} />
+
+        <NavHead
+          movieDispCount={movieNum}
+          handleCounter={setMovieNum}
+          setFilteredList={setFilteredList} />
+
         <Routes>
           <Route path="/" element={
             <FilterPage
               movieNum={movieNum}
               movieList={movieList}
               rmFunc={handleMovieRemove}
-              toggleFunc={toggleFav} />} />
+              toggleFunc={toggleFav}
+              filteredList={filteredList}
+              setFilteredList={setFilteredList} />} />
         </Routes>
       </BrowserRouter>
     </>

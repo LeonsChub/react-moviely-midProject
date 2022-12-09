@@ -10,20 +10,21 @@ import MovieCard from '../MovieCard/MovieCard'
 
 import './filterPage.css'
 
-function FilterPage({ movieNum, movieList, rmFunc, toggleFunc }) {
+function FilterPage({ movieNum, movieList, rmFunc, toggleFunc, filteredList, setFilteredList }) {
     const [pagActive, setPagActive] = useState(1);
 
 
     function renderByCount() {
         const moviesDom = []
+        const renderFromList = filteredList.length > 0 ? filteredList : movieList//list of movies to render from, either filtered list Prop or all movies from movieList Prop
         for (let i = (pagActive - 1) * movieNum; i < movieNum * pagActive; i++) {
-            if (i >= movieList.length) { break; }
+            if (i >= renderFromList.length) { break; }
             moviesDom.push(
                 <MovieCard
-                    movie={movieList[i]}
+                    movie={renderFromList[i]}
                     rmFunc={rmFunc}
                     toggleFunc={toggleFunc}
-                    key={movieList[i].id}
+                    key={renderFromList[i].id}
                 />);
         }
         return moviesDom;
@@ -34,7 +35,11 @@ function FilterPage({ movieNum, movieList, rmFunc, toggleFunc }) {
         <Container fluid>
             <Row>
                 <Col md={2} xs={0} className='p-0 m-0'>
-                    <Sidebar movies={movieList} />
+                    <Sidebar
+                        movies={movieList}
+                        filteredList={filteredList}
+                        setFilteredList={setFilteredList}
+                    />
                 </Col>
                 <Col md={10} xs={12} className='p-0 m-0'>
                     <h1 className='moviesHeading mt-3'>Movies</h1>
@@ -45,7 +50,8 @@ function FilterPage({ movieNum, movieList, rmFunc, toggleFunc }) {
                         total={movieList.length}
                         count={movieNum}
                         active={pagActive}
-                        changePag={setPagActive} />
+                        changePag={setPagActive}
+                        filteredList={filteredList} />
                 </Col>
             </Row>
         </Container>

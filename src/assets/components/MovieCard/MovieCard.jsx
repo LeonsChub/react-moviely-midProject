@@ -34,7 +34,9 @@ function MovieCard({ movie, rmFunc, toggleFunc }) {
             <p className='m-0' id="rating">{movie.rating}/10</p>
             <p className='m-0' id="movieFav" onClick={() => toggleFunc(movie.id)}>{starToRender}</p>
             <Button variant='danger' onClick={
-                () => rmFunc(movie.id)
+                () => {
+                    return rmFunc(movie.id)
+                }
             }>X</Button>
         </div>
     )

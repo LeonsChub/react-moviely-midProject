@@ -11,7 +11,7 @@ function MovieCard({ movie, rmFunc, toggleFunc }) {
     function renderPopOver() {
         const renderTooltip = () => (
             <Tooltip id="button-tooltip">
-                {movie.genres.map((g, index) => <p key={index} className='m-0'>{g.replace(',', '')}</p>)}
+                {movie.genres.map((g, index) => <p key={index} className='m-0'>{g}</p>)}
             </Tooltip>
         );
 

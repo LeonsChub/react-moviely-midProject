@@ -17,6 +17,7 @@ function FilterPage({ movieNum, movieList, rmFunc, toggleFunc, filteredList, set
     function renderByCount() {
         const moviesDom = []
         const renderFromList = filteredList.length > 0 ? filteredList : movieList//list of movies to render from, either filtered list Prop or all movies from movieList Prop
+
         for (let i = (pagActive - 1) * movieNum; i < movieNum * pagActive; i++) {
             if (i >= renderFromList.length) { break; }
             moviesDom.push(

@@ -1,0 +1,24 @@
+input.inputError,
+select.inputError {
+    border-color: #ff0000 !important;
+}
+
+span.error {
+    display: none;
+}
+
+input.inputError+span.error,
+select.inputError+span.error {
+    display: block;
+    color: rgb(196, 0, 0);
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.selectGroup {
+    justify-content: space-between;
+}
+
+.selectGroup>div {
+    width: 30%;
+}

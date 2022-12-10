@@ -5,7 +5,7 @@ import { generatePath } from 'react-router-dom';
 
 import './sidebar.css';
 
-function Sidebar({ movies, filteredList, setFilteredList }) {
+function Sidebar({ movies, setFilteredList, setGenre }) {
 
   function getAllGenres() {
     let uniqueGenres = [];
@@ -27,7 +27,7 @@ function Sidebar({ movies, filteredList, setFilteredList }) {
         <SidebarMenu.Nav
           key={g}
           className="sidebarLink"
-          onClick={() => getMoviesByGenre(g)}>
+          onClick={() => { setGenre(g); return getMoviesByGenre(g) }}>
           <SidebarMenu.Nav.Title>
             <h6>{g}</h6>
           </SidebarMenu.Nav.Title>

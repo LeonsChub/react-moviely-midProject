@@ -10,9 +10,8 @@ import MovieCard from '../MovieCard/MovieCard'
 
 import './filterPage.css'
 
-function FilterPage({ movieNum, movieList, rmFunc, toggleFunc, filteredList, setFilteredList }) {
+function FilterPage({ movieNum, movieList, rmFunc, toggleFunc, filteredList, setFilteredList, genreToFilter, setGenreToFilter }) {
     const [pagActive, setPagActive] = useState(1);
-
 
     function renderByCount() {
         const moviesDom = []
@@ -38,12 +37,15 @@ function FilterPage({ movieNum, movieList, rmFunc, toggleFunc, filteredList, set
                 <Col md={2} xs={0} className='p-0 m-0'>
                     <Sidebar
                         movies={movieList}
-                        filteredList={filteredList}
                         setFilteredList={setFilteredList}
+                        setGenre={setGenreToFilter}
                     />
                 </Col>
                 <Col md={10} xs={12} className='p-0 m-0'>
-                    <h1 className='moviesHeading mt-3'>Movies</h1>
+                    <div className="moviesHeading">
+                        <h1 >Movies</h1>
+                        <span> {genreToFilter !== '' ? `(${genreToFilter})` : ''}</span>
+                    </div>
                     <div id="moviesWrap">
                         {renderByCount()}
                     </div>
@@ -55,7 +57,7 @@ function FilterPage({ movieNum, movieList, rmFunc, toggleFunc, filteredList, set
                         filteredList={filteredList} />
                 </Col>
             </Row>
-        </Container>
+        </Container >
     )
 }
 

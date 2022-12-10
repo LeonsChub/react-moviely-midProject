@@ -10,11 +10,13 @@ import { MOVIES } from './assets/movieData'
 import './App.css'
 
 import FilterPage from './assets/components/Pages/FilterPage'
+import AddPage from './assets/components/Pages/addPage/AddPage'
 
 function App() {
   const [movieList, setMovieList] = useState(MOVIES);
   const [movieNum, setMovieNum] = useState(4);
   const [filteredList, setFilteredList] = useState([]);
+  const [genreToFilter, setGenreToFilter] = useState('');
 
 
   function handleMovieRemove(id) {
@@ -44,7 +46,8 @@ function App() {
         <NavHead
           movieDispCount={movieNum}
           handleCounter={setMovieNum}
-          setFilteredList={setFilteredList} />
+          setFilteredList={setFilteredList}
+          setGenreToFilter={setGenreToFilter} />
 
         <Routes>
           <Route path="/" element={
@@ -54,8 +57,14 @@ function App() {
               rmFunc={handleMovieRemove}
               toggleFunc={toggleFav}
               filteredList={filteredList}
-              setFilteredList={setFilteredList} />} />
+              setFilteredList={setFilteredList}
+              genreToFilter={genreToFilter}
+              setGenreToFilter={setGenreToFilter} />} />
+
+          <Route path='addMovie' element={<AddPage movies={movieList} />} />
+
         </Routes>
+
       </BrowserRouter>
     </>
 

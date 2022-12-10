@@ -1,5 +1,16 @@
 .moviesHeading {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.moviesHeading>span {
+    margin-top: 0.5em;
+    margin-left: 0.5em;
+
+}
+
+.moviesHeading>h1 {
     text-decoration: underline;
 }
 

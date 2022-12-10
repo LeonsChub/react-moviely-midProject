@@ -1,7 +1,9 @@
 import React from 'react';
 import SidebarMenu from 'react-bootstrap-sidebar-menu';
+import { Badge } from 'react-bootstrap';
 import { render } from 'react-dom';
 import { generatePath } from 'react-router-dom';
+
 
 import './sidebar.css';
 
@@ -12,7 +14,12 @@ function Sidebar({ movies, setFilteredList, setGenre }) {
     movies.forEach(movie => {
       movie.genres.map((g) => !uniqueGenres.includes(g) ? uniqueGenres.push(g) : null);
     });
-    return uniqueGenres;
+    return uniqueGenres.sort();
+  }
+
+  function getBadgeNumber(genre) {
+    let moviesByGenres = movies.filter((movie) => movie.genres.includes(genre));
+    return moviesByGenres.length;
   }
 
   function getMoviesByGenre(genre) {
@@ -29,7 +36,12 @@ function Sidebar({ movies, setFilteredList, setGenre }) {
           className="sidebarLink"
           onClick={() => { setGenre(g); return getMoviesByGenre(g) }}>
           <SidebarMenu.Nav.Title>
-            <h6>{g}</h6>
+            <span className="d-flex align-items-center">
+              <h6>{g}</h6>
+              <Badge pill className='mx-2' bg="light" text="dark">
+                {getBadgeNumber(g)}
+              </Badge>
+            </span>
           </SidebarMenu.Nav.Title>
         </SidebarMenu.Nav>)
     });

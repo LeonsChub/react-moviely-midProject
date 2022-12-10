@@ -17,6 +17,17 @@ function App() {
   const [movieNum, setMovieNum] = useState(4);
   const [filteredList, setFilteredList] = useState([]);
   const [genreToFilter, setGenreToFilter] = useState('');
+  const [allGenres, setAllGenres] = useState(() => {
+    let uniqueGenres = [];
+    movieList.forEach(movie => {
+      movie.genres.map((g) => !uniqueGenres.includes(g) ? uniqueGenres.push(g) : null);
+    });
+    return uniqueGenres;
+  })
+
+  useEffect(() => {
+    console.log(movieList)
+  }, [movieList])
 
 
   function handleMovieRemove(id) {
@@ -29,6 +40,13 @@ function App() {
     const indexToRm = fTemp.findIndex((fMovie) => fMovie.id === id);
     fTemp.splice(indexToRm, 1);
     setFilteredList([...fTemp])
+  }
+
+  function handleAddMovie(movie) {
+    let temp = movieList;
+    temp = [...temp, movie]
+    temp = temp.sort((a, b) => b.rating - a.rating)
+    setMovieList(temp);
   }
 
   function toggleFav(id) {
@@ -61,7 +79,11 @@ function App() {
               genreToFilter={genreToFilter}
               setGenreToFilter={setGenreToFilter} />} />
 
-          <Route path='addMovie' element={<AddPage movies={movieList} />} />
+          <Route path='addMovie' element={
+            <AddPage
+              allGenres={allGenres}
+              addMovie={handleAddMovie}
+            />} />
 
         </Routes>
 

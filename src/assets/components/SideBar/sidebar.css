@@ -34,3 +34,8 @@ h6 {
     #sidebar {
         display: none;
     }
+}
+
+.badge>span {
+    border-radius: 24px;
+}

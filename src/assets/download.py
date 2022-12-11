@@ -1,3 +1,5 @@
+#simple scraping script to get movie data from the top 100 page on imdb at least the first 50
+
 import requests
 from bs4 import BeautifulSoup
 import json

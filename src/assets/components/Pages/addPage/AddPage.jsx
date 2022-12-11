@@ -9,11 +9,13 @@ import schema from "./schema/script";
 import './style.css'
 
 import cryptoRandomString from "crypto-random-string"
+// add page is implemented using react bootstrap templates and using formik and yup to validate form
 
 function AddPage({ allGenres, addMovie }) {
-    const [rating, setRating] = useState(5.0);
+    const [rating, setRating] = useState(5.0); // I had problems making formik work with a slider so its in its own state
 
     const onSubmit = (values, actions) => {
+        //onSubmit function to run when form is submitted it is passed into formkik and called from formik
         const newMovie = {
             "id": cryptoRandomString({ length: 5 }),
             "title": values.title,
@@ -36,8 +38,8 @@ function AddPage({ allGenres, addMovie }) {
             genrePick2: '',
             genrePick3: '',
         },
-        validationSchema: schema,
-        onSubmit,
+        validationSchema: schema, //validation schema imported from a script in a schemas folder
+        onSubmit,//handle submit funtion to be run when user clicks submit
 
     })
 
@@ -46,7 +48,7 @@ function AddPage({ allGenres, addMovie }) {
         allGenres.forEach((genre) => {
             options.push(
                 <option
-                    disabled={values.genrePick1 === genre || values.genrePick2 === genre}
+                    disabled={values.genrePick1 === genre || values.genrePick2 === genre} //disables picking genres already previously clicked
                     key={genre}
                     value={genre}
                 >{genre}</option>)

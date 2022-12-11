@@ -34,11 +34,13 @@ function FilterPage({ movieNum, movieList, rmFunc, toggleFunc, filteredList, set
     return (
         <Container fluid>
             <Row>
+                {/* simple use of bootstrap grid system to display a sidebar and main content */}
                 <Col md={2} xs={0} className='p-0 m-0'>
                     <Sidebar
                         movies={movieList}
                         setFilteredList={setFilteredList}
                         setGenre={setGenreToFilter}
+                        setPagActive={setPagActive}
                     />
                 </Col>
                 <Col md={10} xs={12} className='p-0 m-0'>
